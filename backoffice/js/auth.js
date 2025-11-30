@@ -102,7 +102,14 @@ if (loginForm) {
         }
 
         if (data.token) {
+          // Guardamos el token para las rutas protegidas
           localStorage.setItem("authToken", data.token);
+
+          // Guardamos también el id del usuario (para crear proyectos)
+          if (data.user && data.user.id) {
+            localStorage.setItem("userId", data.user.id);
+          }
+
           window.location.href = "home.html";
         } else {
           alert("No se recibió token del servidor.");
@@ -121,6 +128,7 @@ const logoutBtn = document.getElementById("logoutBtn");
 if (logoutBtn) {
   logoutBtn.addEventListener("click", function () {
     localStorage.removeItem("authToken");
+    localStorage.removeItem("userId");
     window.location.href = "login.html";
   });
 }
