@@ -1,25 +1,500 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Backoffice - Home</title>
+  <title>BackOffice - Home</title>
+
   <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    
+    /* HOME */
+    body {
+      margin: 0;
+      font-family: "Poppins", system-ui, sans-serif;
+      color: #e5e7eb;
+      background:
+        radial-gradient(circle at 0% 0%, #22c55e33 0, transparent 55%),
+        radial-gradient(circle at 100% 100%, #38bdf833 0, transparent 55%),
+        linear-gradient(135deg, #020617, #020617);
+    }
+
+    /* SIDEBAR LATERAL */
+    .sidebar {
+      width: 230px;
+      height: 100vh;
+      background:
+        radial-gradient(circle at 0% 0%, #22c55e55 0, transparent 60%),
+        linear-gradient(180deg, #020617, #020617);
+      color: #e5e7eb;
+      position: fixed;
+      left: 0;
+      top: 0;
+      padding: 22px 18px;
+      box-sizing: border-box;
+      border-right: 1px solid rgba(148, 163, 184, 0.35);
+    }
+
+    .sidebar h2 {
+      margin-top: 0;
+      font-size: 20px;
+      letter-spacing: 0.04em;
+      margin-bottom: 24px;
+    }
+
+    .nav-group-title {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      color: #9ca3af;
+      margin-bottom: 8px;
+    }
+
+    .nav-link {
+      display: block;
+      padding: 9px 10px;
+      margin-bottom: 6px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.88rem;
+      color: #cbd5f5;
+      transition: 0.18s;
+    }
+
+    .nav-link:hover {
+      background: rgba(148, 163, 184, 0.18);
+      color: #f9fafb;
+    }
+
+    .nav-link.active {
+      background: linear-gradient(135deg, #38bdf8, #22c55e);
+      color: #020617;
+      font-weight: 600;
+    }
+
+    /* TOPBAR SUPERIOR */
+    .topbar {
+      margin-left: 230px;
+      height: 64px;
+      background: rgba(15, 23, 42, 0.96);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.35);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      box-sizing: border-box;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.6);
+    }
+
+    .topbar-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .topbar-info h1 {
+      margin: 0;
+      font-size: 1.05rem;
+    }
+
+    .topbar-info span {
+      font-size: 0.8rem;
+      color: #9ca3af;
+    }
+
+    .logout-btn {
+      background: linear-gradient(135deg, #fb7185, #f97316);
+      padding: 7px 14px;
+      border: none;
+      color: #111827;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: 0.2s;
+    }
+
+    .logout-btn:hover {
+      box-shadow: 0 10px 24px rgba(248, 113, 113, 0.4);
+      transform: translateY(-1px);
+    }
+
+    /* CONTENEDOR PRINCIPAL */
+    .home-container {
+      margin-left: 230px;
+      padding: 24px 26px;
+      width: calc(100% - 230px);
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    /* ENCABEZADO PRINCIPAL DEL HOME */
+    .home-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .home-title-block {
+      max-width: 60%;
+    }
+
+    .home-title-block h2 {
+      margin: 0;
+      font-size: 1.2rem;
+    }
+
+    .home-title-block p {
+      margin: 6px 0 0;
+      font-size: 0.87rem;
+      color: #9ca3af;
+    }
+
+    /* BOTÓN NUEVO PROYECTO */
+    .btn-add {
+      background: linear-gradient(135deg, #38bdf8, #22c55e);
+      color: #020617;
+      padding: 9px 16px;
+      border: none;
+      font-size: 0.9rem;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: 0.2s ease-in-out;
+      font-weight: 500;
+      white-space: nowrap;
+      margin-top: 4px;
+    }
+
+    .btn-add:hover {
+      box-shadow: 0 10px 24px rgba(34, 197, 94, 0.4);
+      transform: translateY(-1px);
+    }
+
+    /* SECCIÓN PROYECTOS */
+    .projects-section {
+      background: rgba(15, 23, 42, 0.9);
+      border-radius: 1rem;
+      padding: 16px 18px 18px;
+      border: 1px solid rgba(148, 163, 184, 0.55);
+      box-shadow: 0 18px 44px rgba(0, 0, 0, 0.85);
+    }
+
+    .projects-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+      gap: 12px;
+    }
+
+    .projects-header h3 {
+      margin: 0;
+      font-size: 1rem;
+    }
+
+    .projects-header span {
+      font-size: 0.8rem;
+      color: #9ca3af;
+    }
+
+    /* BOTÓN ACTUALIZAR LISTA */
+    .btn-refresh {
+      background: transparent;
+      border: 1px dashed #6b7280;
+      color: #e5e7eb;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: 0.15s;
+      white-space: nowrap;
+    }
+
+    .btn-refresh:hover {
+      border-color: #e5e7eb;
+      color: #f9fafb;
+    }
+
+    /* GRID PROYECTOS */
+    .projects-grid {
+      margin-top: 8px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+    }
+
+    .no-projects {
+      font-size: 0.9rem;
+      color: #9ca3af;
+      padding: 6px 0;
+    }
+
+    /* TARJETAS DE PROYECTO */
+    .project-card {
+      background: rgba(15, 23, 42, 0.98);
+      padding: 14px 14px 12px;
+      border-radius: 0.9rem;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+      transition: 0.18s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 36px rgba(0, 0, 0, 0.9);
+    }
+
+    .project-card h3 {
+      margin: 0;
+      font-size: 0.98rem;
+    }
+
+    .project-card small {
+      display: block;
+      margin-top: 4px;
+      font-size: 0.72rem;
+      color: #9ca3af;
+    }
+
+    .project-card p {
+      margin-top: 10px;
+      margin-bottom: 0;
+      font-size: 0.85rem;
+      color: #d1d5db;
+    }
+
+    .project-actions {
+      margin-top: 10px;
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn-edit,
+    .btn-delete {
+      border: none;
+      padding: 6px 10px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 0.78rem;
+      font-weight: 500;
+    }
+
+    .btn-edit {
+      background: #eab308;
+      color: #111827;
+    }
+
+    .btn-delete {
+      background: #ef4444;
+      color: #f9fafb;
+    }
+
+    /* MODAL */
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(15, 23, 42, 0.75);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .modal-content {
+      background: #020617;
+      padding: 20px 20px 16px;
+      width: 360px;
+      max-width: 90%;
+      border-radius: 1rem;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
+    }
+
+    .modal-content h2 {
+      margin-top: 0;
+      margin-bottom: 12px;
+      font-size: 1.05rem;
+    }
+
+    .form-group {
+      margin-bottom: 10px;
+    }
+
+    .form-group label {
+      font-weight: 500;
+      font-size: 0.85rem;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 7px 9px;
+      border-radius: 8px;
+      border: 1px solid #111827;
+      margin-top: 5px;
+      font-size: 0.86rem;
+      background: #020617;
+      color: #e5e7eb;
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 62px;
+    }
+
+    .modal-buttons {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #38bdf8, #22c55e);
+      color: #020617;
+      padding: 7px 14px;
+      border: none;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      font-weight: 500;
+    }
+
+    .btn-secondary {
+      background: #6b7280;
+      color: white;
+      padding: 7px 14px;
+      border: none;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .home-container {
+        margin-left: 0;
+        width: 100%;
+        padding: 18px;
+      }
+
+      .sidebar {
+        display: none;
+      }
+
+      .topbar {
+        margin-left: 0;
+      }
+
+      .home-title-block {
+        max-width: 100%;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .home-header {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn-add {
+        align-self: flex-start;
+      }
+
+      .home-container {
+        padding: 14px;
+      }
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <div class="card home-card">
-      <h1>Home del Backoffice</h1>
-      <h2>Bienvenido, aquí irán las opciones del panel.</h2>
 
-      <p class="redirect-text">
-        Esta vista solo debería verse si iniciaste sesión correctamente.
-      </p>
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <h2>BackOffice</h2>
 
-      <button id="logoutBtn" class="btn" style="margin-top: 1rem;">
-        Cerrar sesión
-      </button>
+    <div class="nav-group-title">Secciones</div>
+    <div class="nav-link active">Proyectos</div>
+    <div class="nav-link">Usuarios</div>
+    <div class="nav-link">Configuración</div>
+  </aside>
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="topbar-info">
+      <h1>Panel de administración</h1>
+      <span>Portafolio - Aplicaciones Web</span>
+    </div>
+    <button id="logoutBtn" class="logout-btn">Cerrar sesión</button>
+  </header>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="home-container">
+
+    <section class="home-header">
+      <div class="home-title-block">
+        <h2>Proyectos de portafolio</h2>
+        <p>
+          Aquí puedes crear, actualizar y eliminar proyectos que formarán parte
+          de tu portafolio final de la materia.
+        </p>
+      </div>
+
+      <button id="openModal" class="btn-add">+ Nuevo proyecto</button>
+    </section>
+
+    <section class="projects-section">
+      <div class="projects-header">
+        <div>
+          <h3>Listado de proyectos</h3>
+        </div>
+
+        <button id="refreshProjects" class="btn-refresh">Actualizar lista</button>
+      </div>
+
+      <div id="projectsList" class="projects-grid">
+      </div>
+    </section>
+
+  </main>
+
+  <div id="projectModal" class="modal hidden">
+    <div class="modal-content">
+      <h2 id="modalTitle">Nuevo proyecto</h2>
+
+      <form id="projectForm">
+        <input type="hidden" id="projectId">
+
+        <div class="form-group">
+          <label for="projectTitle">Título del proyecto</label>
+          <input type="text" id="projectTitle" required>
+        </div>
+
+        <div class="form-group">
+          <label for="projectDescription">Descripción</label>
+          <textarea id="projectDescription" required></textarea>
+        </div>
+
+        <div class="modal-buttons">
+          <button class="btn-secondary" type="button" id="closeModal">Cancelar</button>
+          <button class="btn-primary" type="submit">Guardar</button>
+        </div>
+      </form>
     </div>
   </div>
+
+  <script src="js/auth.js"></script>
+  <script src="js/home.js"></script>
 </body>
 </html>
