@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portafolio | JUAN PEDRO</title>
+
+  <link rel="stylesheet" href="css/portafolio.css" />
+</head>
+<body>
+  <!-- Barra de navegación-->
+  <header class="top-nav">
+    <div class="nav-left">
+      <span class="logo">JP</span>
+      <span class="brand">Portafolio</span>
+    </div>
+    <nav class="nav-links">
+      <a href="#inicio">Inicio</a>
+      <a href="#proyectos">Proyectos</a>
+      <a href="#sobre-mi">Sobre mí</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section id="inicio" class="hero">
+    <div class="hero-text">
+      <p class="hero-tag">Desarrollador en formación</p>
+      <h1>Hola, soy <span>Juan Pedro</span></h1>
+      <p class="hero-description">
+        Estudiante de Ingeniería en Software de 5to semestre.
+        Me gusta construir aplicaciones web y experimentar con nuevas
+        tecnologías usando HTML, CSS y JavaScript.
+      </p>
+      <a href="#proyectos" class="btn-primary">Ver mis proyectos</a>
+    </div>
+
+    <div class="hero-panel">
+      <h2>Stack principal</h2>
+      <ul>
+        <li>HTML, CSS</li>
+        <li>JavaScript</li>
+        <li>Consumo de APIs REST</li>
+        <li>Diseño responsivo básico</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SECCIÓN PROYECTOS -->
+  <main>
+    <section id="proyectos" class="projects-section">
+      <header class="projects-header">
+        <div>
+          <h2>Proyectos públicos</h2>
+          <p>
+            Estos proyectos se cargan desde la API
+            <code>/publicProjects/:itsonId</code> usando JS.
+          </p>
+        </div>
+        <button id="reloadProjects" class="btn-secondary">
+          Recargar proyectos
+        </button>
+      </header>
+
+      <div id="projectsContainer" class="projects-grid">
+        <!-- Aquí se insertan las tarjetas desde JS -->
+        <p class="loading-msg">Cargando proyectos...</p>
+      </div>
+    </section>
+
+    <!-- SOBRE MÍ -->
+    <section id="sobre-mi" class="about-section">
+      <div class="about-card">
+        <h2>Sobre mí</h2>
+        <p>
+          Soy estudiante de Ingeniería en Software, me interesa el desarrollo
+          web frontend y backend. Este portafolio está conectado a mi
+          BackOffice, donde administro los proyectos que se muestran aquí.
+        </p>
+        <p>
+          Me gusta enfocarme en un código sencillo pero ordenado y con buenas
+          prácticas básicas: separación de HTML, CSS y JS, uso moderado de
+          comentarios y diseño responsivo.
+        </p>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto" class="contact-section">
+      <h2>Contacto</h2>
+      <p>Si quieres ponerte en contacto conmigo, estos son algunos medios:</p>
+      <div class="contact-grid">
+        <div class="contact-item">
+          <h3>Correo</h3>
+          <p>jpedrogr29@gmail.com</p>
+        </div>
+        <div class="contact-item">
+          <h3>GitHub</h3>
+          <p><a href="github" target="_blank">https://github.com/pedrogr29</a></p>
+        </div>
+        <div class="contact-item">
+          <h3>X (Twitter)</h3>
+          <p><a href="x" target="_blank">https://x.com/ElZawa_</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="main-footer">
+    <small>© 2025 Juan Pedro · Portafolio para la materia de Aplicaciones Web</small>
+  </footer>
+
+  <script src="js/portafolio.js"></script>
+</body>
+</html>
+
