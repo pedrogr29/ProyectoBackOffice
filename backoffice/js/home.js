@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", function () {
   const API_BASE = "https://portfolio-api-three-black.vercel.app/api/v1";
 
@@ -18,7 +17,6 @@ document.addEventListener("DOMContentLoaded", function () {
   let editingId = null;
 
   // Helpers
-
   function getToken() {
     const token = localStorage.getItem("authToken");
     if (!token) {
@@ -39,11 +37,12 @@ document.addEventListener("DOMContentLoaded", function () {
     return false;
   }
 
-  // Leer proyectos (GET /projects)
+  // GET /projects -> cargar proyectos
   async function loadProjects() {
     if (!projectsList) return;
 
-    projectsList.innerHTML = "<p class='no-projects'>Cargando proyectos...</p>";
+    projectsList.innerHTML =
+      "<p class='no-projects'>Cargando proyectos...</p>";
 
     try {
       const token = getToken();
@@ -79,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function () {
     renderProjects();
   }
 
-  // Pinta tarjetas
+  // Pintar tarjetas
   function renderProjects() {
     if (!projectsList) return;
 
@@ -130,7 +129,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // MODAL: NUEVO / EDITAR
   function openNewModal() {
-    console.log("Abriendo modal en modo NUEVO");
     editingId = null;
     if (!projectModal) return;
 
@@ -178,7 +176,7 @@ document.addEventListener("DOMContentLoaded", function () {
     projectModal.classList.add("hidden");
   }
 
-  // GUARDAR (submit del modal)
+  // Guardar (submit del modal)
   async function handleSaveProject(e) {
     e.preventDefault();
 
@@ -207,18 +205,13 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Crear proyecto (POST /projects)
+  // POST /projects -> crear
   async function createProject({ title, description }) {
     const token = getToken();
-    const userId = localStorage.getItem("userId");
 
     const body = {
       title: title,
       description: description,
-      userId: userId,
-      technologies: [],
-      repository: "",
-      images: [],
     };
 
     const res = await fetch(`${API_BASE}/projects`, {
@@ -231,6 +224,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     const data = await res.json();
+    console.log("Respuesta createProject:", data);
 
     if (handleUnauthorized(res.status)) return;
 
@@ -242,7 +236,7 @@ document.addEventListener("DOMContentLoaded", function () {
     return data;
   }
 
-  // Actualizar proyecto (PUT /projects/:id)
+  // PUT /projects/:id -> actualizar
   async function updateProject(id, updates) {
     const token = getToken();
 
@@ -256,6 +250,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     const data = await res.json();
+    console.log("Respuesta updateProject:", data);
 
     if (handleUnauthorized(res.status)) return;
 
@@ -267,9 +262,11 @@ document.addEventListener("DOMContentLoaded", function () {
     return data;
   }
 
-  // Eliminar proyecto (DELETE /projects/:id)
+  // DELETE /projects/:id -> eliminar
   async function deleteProject(id) {
-    const confirmDelete = confirm("¿Seguro que quieres eliminar este proyecto?");
+    const confirmDelete = confirm(
+      "¿Seguro que quieres eliminar este proyecto?"
+    );
     if (!confirmDelete) return;
 
     try {
@@ -283,6 +280,7 @@ document.addEventListener("DOMContentLoaded", function () {
       });
 
       const data = await res.json();
+      console.log("Respuesta deleteProject:", data);
 
       if (handleUnauthorized(res.status)) return;
 
@@ -300,12 +298,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Eventos 
+  // Eventos
   if (openModalBtn) {
-    console.log("Botón + Nuevo proyecto encontrado, agregando listener");
     openModalBtn.addEventListener("click", openNewModal);
-  } else {
-    console.warn("No encontré el botón con id='openModal'");
   }
 
   if (closeModalBtn) {
@@ -330,5 +325,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  // Carga inicial
   loadProjects();
 });

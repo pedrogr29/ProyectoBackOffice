@@ -1,4 +1,3 @@
-
 const API_BASE = "https://portfolio-api-three-black.vercel.app/api/v1";
 
 // Proteger HOME si no hay token => login
@@ -105,9 +104,12 @@ if (loginForm) {
           // Guardamos el token para las rutas protegidas
           localStorage.setItem("authToken", data.token);
 
-          // Guardamos también el id del usuario (para crear proyectos)
-          if (data.user && data.user.id) {
-            localStorage.setItem("userId", data.user.id);
+          // Guardar id de usuario 
+          if (data.user) {
+            const userId = data.user.id || data.user._id;
+            if (userId) {
+              localStorage.setItem("userId", userId);
+            }
           }
 
           window.location.href = "home.html";
