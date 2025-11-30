@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Backoffice - Registro</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+
+      <div class="card-left">
+        <h1>Backoffice</h1>
+        <h2>Crea tu cuenta</h2>
+
+        <form id="registerForm" class="form">
+          <div class="input-group">
+            <label for="nombre">Nombre completo</label>
+            <input
+              type="text"
+              id="nombre"
+              name="nombre"
+              placeholder="Nombre y apellido"
+              required
+            >
+          </div>
+
+          <div class="input-group">
+            <label for="email">Correo electrónico</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="ejemplo@correo.com"
+              required
+            >
+          </div>
+
+          <div class="input-group">
+            <label for="password">Contraseña</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Ingresa una contraseña"
+              required
+            >
+          </div>
+
+          <button type="submit" class="btn">Registrarme</button>
+        </form>
+
+        <p class="redirect-text">
+          ¿Ya tienes cuenta?
+          <a href="login.html">Inicia sesión</a>
+        </p>
+      </div>
+
+      <div class="card-right">
+        <h2 class="welcome-title">Bienvenido a tu Backoffice</h2>
+        <p class="welcome-subtitle">
+          Administra tus proyectos de portafolio desde un solo lugar.
+          Después de registrarte podrás crear, actualizar y eliminar
+          proyectos de forma sencilla para tu presentación final.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>
